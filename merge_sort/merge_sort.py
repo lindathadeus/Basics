@@ -1,6 +1,6 @@
 A = [5, 4, 3, 2, 1]
 
-def merge1(L, R):
+def merge(L, R):
     i = 0
     j = 0
     U = []
@@ -11,29 +11,12 @@ def merge1(L, R):
         else:
             U.append(R[j])
             j += 1
- 
+
     if i < len(L):
         U.extend(L[i:])
     if j < len(R):
         U.extend(R[j:])
     return U
-
-def merge11(L, R):
-    i = 0
-    j = 0
-    U = []
-    while i < len(L) and j < len(R):
-        if L[i] <= R[j]:
-            U.append(L[i])
-            i += 1
-        else:
-            U.append(R[j])
-            j += 1
-
-    if i < len(L):
-        U.extend(L[i:])
-    else:
-        U.extend(R[j:])
 
 def sort(A):
     #base case
@@ -41,19 +24,16 @@ def sort(A):
         return A
     
     #divide by 2
-    mid = len(A) // 2
-    L = A[:mid]
-    R = A[mid:]
+    mid = len(A) // 2 #floor of middle
+    L = A[:mid] #L = A[0..mid-1]
+    R = A[mid:] #R = A[mid..n-1], n is the size of A
 
     #recurse
-    L = sort(L)
+    L = sort(L) #sort the given list
     R = sort(R)
 
     #merge and return
-    #return list(merge(L, R))
-    print(type(R))
-    return merge11(L, R)
-    return merge11(L, R)
+    return merge(L, R)
 
 print(A)
 A=sort(A)
