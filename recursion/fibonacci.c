@@ -3,7 +3,7 @@
 * Purpose       :
 * Author        : Linda J
 * Creation date : 10-09-2021
-* Last modified : Friday 10 September 2021 07:00:50 PM
+* Last modified : Friday 10 September 2021 08:56:45 PM
 ****************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,24 +29,19 @@ unsigned int memoized_fib(unsigned int n);
 unsigned int naive_fib(unsigned int n);
 
 unsigned int naive_fib(unsigned int n) {
-  if (n <= 0)
+  if (n <= 1)
     return 1;
-  else if (n == 1)
-    return 1;
-  else {
-    if ((n - 2) >= 0)
-      return naive_fib(n - 1) + naive_fib(n - 2);
-  }
+  return naive_fib(n - 1) + naive_fib(n - 2);
 }
 
 //memoized
 unsigned int memoized_fib(unsigned int n) {
   unsigned int fib[n];
 
-  fib[0] = 1;
-  fib[1] = 1;
+  if (n <= 1)
+    return 1;
 
-  for (unsigned int i = 2; i <= n ; i++) {
+  for (unsigned int i = 2; i <= n; i++) {
     fib[i] = fib[i -1] + fib[i - 2]; 
   }
   
