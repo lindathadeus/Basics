@@ -8,6 +8,21 @@
 
 import sys
 
+def acoin_change_path(bill_amount, nums):
+    if (bill_amount == 0):
+        return [];
+    
+    if (bill_amount < 0):
+        return None;
+    
+    child =
+    for i in range(len(nums)):
+        child = coin_change_path(bill_amount - nums[i], nums)
+        if child != None:
+            child.append(nums[i]);
+    
+    return res;
+
 def coin_change(bill_amount, nums):
     if (bill_amount == 0):
         return 1;
@@ -23,6 +38,7 @@ def coin_change(bill_amount, nums):
 
 def main():
     print (coin_change(4, [1,2,3]))
+    print (coin_change_path(4, [1,2,3]))
     return 0
 
 if __name__ == "__main__":

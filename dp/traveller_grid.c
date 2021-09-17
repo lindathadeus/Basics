@@ -44,6 +44,18 @@ int max_path(int m, int n) {
   return max_path(m - 1, n) + max_path(m, n - 1);
 }
 
+int iterative_max_path(int m, int n) {
+  //base cases
+  for (int i = 0;i)
+  if ((m == 0) || (n == 0))
+    return 0;
+
+  if ((m == 1) && (n == 1))
+    return 1;
+
+  return max_path(m - 1, n) + max_path(m, n - 1);
+}
+
 int main(int argc, char *argv[], char *envp[]) {
   int m[argc];
   if (argc != 3)
