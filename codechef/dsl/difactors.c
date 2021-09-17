@@ -32,6 +32,15 @@ Sample Output 1:
 #include <stdio.h>
 #include <stdlib.h>
 
+int
+factors_count(int N, int div) {
+  if (div <= N) {
+    if (N % div == 0) {
+      return 1 + factors_count(N, div + 1);
+    }
+  }
+}
+
 void factors(int N, int div) {
   if (div <= N) {
     if (N % div == 0) {
@@ -42,8 +51,11 @@ void factors(int N, int div) {
 }
 
 int main(int argc, char *argv[], char *envp[]) {
-  factors(10, 1);
-  factors(3, 1);
-  factors(12, 1);
+  printf("10: ");factors(10, 1);printf("\n");
+  printf("3: ");factors(3, 1);printf("\n");
+  printf("12: ");factors(12, 1);printf("\n");
+  printf("12: %d\n", factors_count(12, 1));
+  printf("4: %d\n", factors_count(4, 1));
+  printf("10: %d\n", factors_count(10, 1));
   return 0;
 }
