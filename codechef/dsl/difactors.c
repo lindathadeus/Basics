@@ -32,13 +32,16 @@ Sample Output 1:
 #include <stdio.h>
 #include <stdlib.h>
 
-int
-factors_count(int N, int div) {
-  if (div <= N) {
-    if (N % div == 0) {
-      return 1 + factors_count(N, div + 1);
-    }
+void factors_count(unsigned int N, unsigned int div) {
+  unsigned int div_count = 0;
+  char factors[2 * N];
+  for (unsigned int i = 1; i <= N; i++) {
+    if (N % i == 0) {
+      div_count += 1;
+      sprintf(factors, "%d ", i);
+    }   
   }
+  printf("%d\n%s", div_count, factors);
 }
 
 void factors(int N, int div) {
@@ -51,11 +54,9 @@ void factors(int N, int div) {
 }
 
 int main(int argc, char *argv[], char *envp[]) {
-  printf("10: ");factors(10, 1);printf("\n");
-  printf("3: ");factors(3, 1);printf("\n");
-  printf("12: ");factors(12, 1);printf("\n");
-  printf("12: %d\n", factors_count(12, 1));
-  printf("4: %d\n", factors_count(4, 1));
-  printf("10: %d\n", factors_count(10, 1));
+  printf("12: "); factors(12, 1);printf("\n");
+  printf("\n\n12: "); factors_count(12, 1);
+  //printf("4: "); factors_count(4, 1);
+  //printf("10: "); factors_count(10, 1);
   return 0;
 }
