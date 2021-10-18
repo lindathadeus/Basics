@@ -62,8 +62,9 @@ int main(int argc, char *argv[]) {
     }
     for(unsigned int j = 0; j < n; j++) {
       left = (j >= 1) ? j - 1 : j;
+      right = (j <= n - 2) ? j + 1 : j;
       
-      printf("#a[left]=%d, a[j]=%d, peak=%d\n", a[left], a[right], a[j], peak_count);
+      printf("#a[left]=%d, a[right]=%d, a[j]=%d, peak=%d\n", a[left], a[right], a[j], peak_count);
 
       if ((a[left] <= a[j]) && (a[right] <= a[j])) {
         peak_count++;
