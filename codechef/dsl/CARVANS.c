@@ -57,15 +57,17 @@ int main(int argc, char *argv[]) {
   for(unsigned int i = 0; i < T; i++) {
     scanf("%d", &n);
     int a[n];
-    peak_count = 0;
+    peak_count = 1;
     for(unsigned int j = 0; j < n; j++) {
       scanf("%d", &a[j]);
     }
-    for(unsigned int j = 0; j < n; j++) {
-      left = (j >= 1) ? j : -1;
-      right = (j <= n - 2) ? j : -1;
+    for(unsigned int j = 1; j < n - 1; j++) {
+      //left = (j >= 1) ? j : -1;
+      //right = (j <= n - 2) ? j : -1;
 
-      if((left > -1) && (right > -1))
+      left = j - 1;
+      right = j + 1;
+
       if ((a[left] <= a[j]) && (a[right] <= a[j]))
         peak_count++;
 
