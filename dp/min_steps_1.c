@@ -1,5 +1,5 @@
 /****************************************************************
-* File name     : min_steps_1.c
+* File name     : memoization.c
 * Purpose       : On a positive integer, you can perform any one of the following 3 steps.
 
     Subtract 1 from it. ( n = n - 1 )
@@ -13,66 +13,49 @@ Now the question is, given a positive integer n, find the minimum number of step
 ****************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define min(X, Y)  ((X) < (Y) ? (X) : (Y))
 #define minimum(X, Y, Z) min(min(X, Y), Z)
 
-int min_steps_1(int n) {
-  if (n == 1)
-    return 0;
+#define value 842
+int memo[value + 1];
 
-  int steps = min_steps_1(n - 1);
-  if (n % 3 == 0)
-    steps = min(steps, min_steps_1(n / 3));
+int memoization(int n) {
+  if (n == 1) return 0;
+  
+  if (memo[n] != -1) return memo[n];
+
+  int steps = 1 + memoization(n - 1);
   if (n % 2 == 0)
-    steps = min(steps, min_steps_1(n / 2));
+    steps = min(steps, 1 + memoization(n / 2));
+  if (n % 3 == 0)
+    steps = min(steps, 1 + memoization(n / 3));
 
-  return 1 + steps;
+  memo[n] = steps;
+  return memo[n];
 }
 
-int min_steps_1_old(int n) {
-  if (n > 1) {
-    if ((n % 6 == 0))
-      return 1 + minimum(min_steps_1_old(n/2), min_steps_1_old(n/3), min_steps_1_old(n - 1));
-    else if (n % 3 == 0)
-      return 1 + min(min_steps_1_old(n/3), min_steps_1_old(n - 1));
-    else if (n % 2 == 0)
-      return 1 + min(min_steps_1_old(n/2), min_steps_1_old(n - 1));
-    else
-      return 1 + min_steps_1_old(n - 1);
-	}
-  return 0;
-}
+int dp(int n) {
+  int dp[n + 1];
 
-int min_steps_1_dp(int n) {
-
-  int min_steps_1_dp[n + 1];
-
-  min_steps_1_dp[0] = 0;
-  min_steps_1_dp[1] = 0;
+  dp[1] = 0;
   for(int i = 2; i <= n; i++) {
-    if ((i % 6 == 0))
-      min_steps_1_dp[i] = 1 + minimum(min_steps_1_dp[i/2], min_steps_1_dp[i/3], min_steps_1_dp[i - 1]);
-    else if (i % 3 == 0)
-      min_steps_1_dp[i] = 1 + min(min_steps_1_dp[i/3], min_steps_1_dp[i - 1]);
-    else if (i % 2 == 0)
-      min_steps_1_dp[i] = 1 + min(min_steps_1_dp[i/2], min_steps_1_dp[i - 1]);
-    else
-      min_steps_1_dp[i] = 1 + min_steps_1_dp[i - 1];
+		dp[i] = 1 + dp[i - 1];
+    if (i % 2 == 0)
+      dp[i] = min(dp[i], 1 + dp[i / 2]);
+    if (i % 3 == 0)
+      dp[i] = min(dp[i], 1 + dp[i / 3]);
   }
 
-  return min_steps_1_dp[n];
+  return dp[n];
 }
 
 int main(int argc, char *argv[], char *envp[]) {
 
-  printf("%d\n", min_steps_1(1));
-  printf("%d\n", min_steps_1(2));
-  printf("%d\n", min_steps_1(3));
-  printf("%d\n", min_steps_1(17));
-  printf("%d\n", min_steps_1(10));
-  printf("\n%d\n", min_steps_1_dp(17));
-  printf("%d\n", min_steps_1_dp(3));
-  printf("%d\n", min_steps_1_dp(2));
-  printf("%d\n", min_steps_1_dp(1));
+  for (int i = 0; i < value + 1; i++) memo[i] = -1;
+
+  printf("memoization(%d) = %d\n", value, memoization(value));
+  printf("dp(%d) = %d\n", value, dp(value));
+
   return 0;
 }
