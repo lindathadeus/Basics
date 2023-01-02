@@ -1,0 +1,30 @@
+Dynamic programming is a method for solving problems by breaking them down into smaller subproblems and storing the solutions to these subproblems in an array or table. The stored solutions are then used to solve the original problem. This technique is used to avoid recomputing the same subproblems over and over again, and is especially useful when the number of possible subproblems is very large or when the subproblems have overlapping solutions.
+
+Here is an example of how dynamic programming can be used to solve the Fibonacci sequence problem:
+
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+This recursive function works fine for small values of n, but it becomes very slow for larger values because it ends up recomputing the same subproblems over and over again.
+
+We can use dynamic programming to make this function much faster by storing the solutions to each subproblem in an array and using the stored solutions to solve the original problem. Here is the modified function:
+
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        f = [0] * (n+1)
+        f[0] = 0
+        f[1] = 1
+        for i in range(2, n+1):
+            f[i] = f[i-1] + f[i-2]
+        return f[n]
+
+This function runs much faster because it only computes each subproblem once and stores the solution in an array.
