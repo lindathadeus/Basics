@@ -1,0 +1,75 @@
+Here is a simple tutorial for learning Guile Scheme:
+
+    Install Guile: To get started with Guile, you will need to install it on your computer. You can download the latest version of Guile from the official website (https://www.gnu.org/software/guile/) and follow the instructions to install it.
+
+    Run the REPL: The REPL (Read-Eval-Print Loop) is a command-line interface that allows you to enter Scheme expressions and see their results. To start the REPL, open a terminal window and type guile. You should see a scheme@(guile-user)> prompt.
+
+    Basic syntax: Scheme is a functional programming language, which means that it treats functions as first-class values. In Scheme, functions are defined using the define keyword, like this:
+
+(define (square x)
+  (* x x))
+
+This defines a function called square that takes a single argument x and returns its square. You can call this function by typing (square 3) at the REPL, which should return 9.
+
+    Data types: Scheme has a number of built-in data types, including numbers (integers and floating-point), strings, lists, and symbols. For example, you can define a string like this:
+
+(define greeting "Hello, world!")
+
+You can define a list like this:
+
+(define numbers (list 1 2 3 4
+
+Linda J
+and
+
+You can access elements of a list using the list-ref function, like this:
+
+(list-ref numbers 2)
+
+This will return the third element of the list (since the indices start at 0).
+
+    Control structures: Scheme has several control structures for making decisions and repeating actions. The if statement allows you to execute different code based on a condition, like this:
+
+(define x 10)
+(if (> x 5)
+    (display "x is greater than 5")
+    (display "x is not greater than 5"))
+
+The cond statement allows you to test multiple conditions and execute different code for each one:
+
+(define x 10)
+(cond ((> x 5) (display "x is greater than 5"))
+      ((> x 0) (display "x is positive"))
+      (else (display "x is negative or zero")))
+
+The for loop allows you to repeat an action a certain number of times:
+
+(for ((i 0) (i 5))
+  (display i))
+
+This will display the numbers 0 through 4.
+
+Linda J
+and
+
+Functional programming: One of the key features of Scheme is its support for functional programming, which means that functions are first-class values that can be passed as arguments to other functions, returned as results, and stored in data structures. For example, you can define a function that takes another function as an argument like this:
+
+(define (apply-function func arg)
+  (func arg))
+
+You can then call this function with another function and an argument, like this:
+
+(apply-function square 2)
+
+This will return the result of calling the square function with the argument 2, which is 4.
+
+    Recursion: Recursion is an important concept in functional programming, and Scheme provides support for recursive functions. A recursive function is a function that calls itself in order to solve a problem. For example, you can define a recursive function to calculate the factorial of a number like this:
+
+(define (factorial n)
+  (if (= n 0)
+      1
+      (* n (factorial (- n 1)))))
+
+This function defines a base case (when n is 0) and a recursive case (when n is not 0). The recursive case calls the factorial function again with n - 1, until the base case is reached.
+
+I hope this helps get you started with learning Guile Scheme!
